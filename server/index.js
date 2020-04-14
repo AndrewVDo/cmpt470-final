@@ -87,6 +87,28 @@ app.post('/upload-file', upload.single('file'), async (req, res) => {
                     reject(e)
                 })
                 .on('data', row => {
+                    if (row.studentID === 'total') {
+                        total = 0
+                        for (let prop in row) {
+                            if (prop !== 'studentID') {
+                                if (isNaN(row[prop]) || Number(row[prop]) < 0) {
+                                    throw new Error("Grades must be positive numbers")
+                                }
+                                total += Number(row[prop])
+                            }
+                        }
+                        if (total !== 100) {
+                            throw new Error("Total does not equal 100%")
+                        }
+                    } else {
+                        for (let prop in row) {
+                            if (prop !== 'studentID') {
+                                if (isNaN(row[prop]) || Number(row[prop]) < 0) {
+                                    throw new Error("Grades must be positive numbers")
+                                }
+                            }
+                        }
+                    }
                     fileRows.push(row)
                 })
                 .on('end', rowCount => {
@@ -105,7 +127,10 @@ app.post('/upload-file', upload.single('file'), async (req, res) => {
         res.json(result)
     }
     catch (e) {
-        result.msg = 'Upload failure'
+        fs.unlink(path.resolve(__dirname, req.file.path), (e) => {
+            if (e) throw e
+        })
+        result.msg = 'Upload failure: ' + e.toString()
         req.session.grades = undefined
         res.json(result)
         return
@@ -113,8 +138,16 @@ app.post('/upload-file', upload.single('file'), async (req, res) => {
 })
 
 app.get('/histogram', (req, res) => {
-    console.log(req.session.grades)
-    res.render('./histogram.ejs')
+    // if(!req.session.username) {
+    //     res.render('./Login.ejs')
+    //     return
+    // }
+
+    // if(!req.session.grades) {
+    //     res.render('./LandingPage.ejs')
+    // }
+
+    res.render('./Histogram.ejs', {grades : req.session.grades})
 })
 
 app.listen(8080, () => console.log("Listening on 8080"))

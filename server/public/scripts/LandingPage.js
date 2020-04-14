@@ -1,6 +1,5 @@
 
 $(".upload-form").submit((event) => {
-    console.log("HI")
     event.preventDefault()
     let url = $(".upload-form").attr('action')
     let data = new FormData()

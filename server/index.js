@@ -31,7 +31,12 @@ app.use(session({
 app.use('upload-csv', router)
 
 app.get('/', (req, res) => {
-    res.render('./Login.ejs')
+    if(req.session.username) {
+        res.render('./Login.ejs')
+        return
+    }
+
+    res.render('./LandingPage.ejs')
 })
 
 app.post('/login', async (req, res) => {
@@ -61,7 +66,7 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/landing-page', (req, res) => {
-    if(!req.session.username) {
+    if(req.session.username) {
         res.render('./Login.ejs')
         return
     }
@@ -70,22 +75,46 @@ app.get('/landing-page', (req, res) => {
 })
 
 app.post('/upload-file', upload.single('file'), async (req, res) => {
-    let promise = new Promise((resolve, result) => {
+    let result = {
+        success: false,
+        msg: 'message in a bottle',
+    }
+    let promise = new Promise((resolve, reject) => {
         let fileRows = []
         fs.createReadStream(path.resolve(__dirname, req.file.path))
             .pipe(csv.parse({ headers: true }))
-                .on('error', error => console.error(error))
-                .on('data', row => fileRows.push(row))
+                .on('error', e => {
+                    reject(e)
+                })
+                .on('data', row => {
+                    fileRows.push(row)
+                })
                 .on('end', rowCount => {
                     resolve(fileRows)
-                    console.log(path.resolve(__dirname, req.file.path))
                     fs.unlink(path.resolve(__dirname, req.file.path), (e) => {
                         if (e) throw e
                     })
                 });
     })
-    let result = await promise
-    console.log(result)
+
+    try {
+        let rows = await promise
+        result.success = true
+        result.msg = 'Upload success'
+        req.session.grades = rows
+        res.json(result)
+    }
+    catch (e) {
+        result.msg = 'Upload failure'
+        req.session.grades = undefined
+        res.json(result)
+        return
+    }
+})
+
+app.get('/histogram', (req, res) => {
+    console.log(req.session.grades)
+    res.render('./histogram.ejs')
 })
 
 app.listen(8080, () => console.log("Listening on 8080"))

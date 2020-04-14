@@ -1,0 +1,30 @@
+.upload-form {
+    width: 15em;
+    height: 15em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -7.5em;
+    margin-top: -7.5em;
+    border: 1px solid black;
+    border-radius: 5em;
+    background-color: blue;
+}
+
+.upload-form > * {
+    width: 15em;
+    position: relative;
+    left: 50%;
+    top: 35%;
+    margin-left: -8.5em;
+    margin-top: -8.5em;
+    border: 1px solid black;
+    border-radius: 5em;
+    padding: 1em;
+    background-color: white;
+}
+
+.upload-form > button {
+    margin-left: -7.5em;
+    background-color: lime;
+}

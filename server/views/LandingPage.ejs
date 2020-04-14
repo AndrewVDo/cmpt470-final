@@ -7,10 +7,9 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-    <form action="/upload-file" enctype="multipart/form-data" method="POST">
-        <span>Upload Grades:</span>
-        <input type="file" name="file" required><br>
-        <input type="submit">
+    <form action="/upload-file" enctype="multipart/form-data" method="POST" class="upload-form">
+        <input type="file" name="file" class="file-input" id="file" required><br><br>
+        <button type="submit">Upload Grades</button>
     </form>
     <script type="text/javascript" src="/scripts/LandingPage.js"></script>
     

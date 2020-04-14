@@ -1,6 +1,14 @@
 const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser')
+const path = require('path')
+const router = new express.Router();
+const fs = require('fs')
+const multer = require('multer')
+const upload = multer({
+    dest: './tmp/csv/',
+})
+const csv = require('fast-csv')
 const ejs = require('ejs')
 const md5 = require('md5')
 const mysql = require('mysql2')
@@ -20,6 +28,7 @@ app.use(bodyParser.json())
 app.use(session({
     secret: 'davie jones locker'
 }))
+app.use('upload-csv', router)
 
 app.get('/', (req, res) => {
     res.render('./Login.ejs')
@@ -60,8 +69,23 @@ app.get('/landing-page', (req, res) => {
     res.render('./LandingPage.ejs')
 })
 
-app.post('/upload-csv', (req, res) => {
-
+app.post('/upload-file', upload.single('file'), async (req, res) => {
+    let promise = new Promise((resolve, result) => {
+        let fileRows = []
+        fs.createReadStream(path.resolve(__dirname, req.file.path))
+            .pipe(csv.parse({ headers: true }))
+                .on('error', error => console.error(error))
+                .on('data', row => fileRows.push(row))
+                .on('end', rowCount => {
+                    resolve(fileRows)
+                    console.log(path.resolve(__dirname, req.file.path))
+                    fs.unlink(path.resolve(__dirname, req.file.path), (e) => {
+                        if (e) throw e
+                    })
+                });
+    })
+    let result = await promise
+    console.log(result)
 })
 
 app.listen(8080, () => console.log("Listening on 8080"))

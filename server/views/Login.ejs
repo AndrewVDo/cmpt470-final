@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/Common.css">
+    <link rel="stylesheet" type="text/css" href="/css/Login.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-    <form action="/" method="POST">
-        <input type="text" placeholder="Username" name="username"><br><br>
-        <input type="password" placeholder="Password" name="password"><br><br>
+    <form class="login-form" action="/login" method="POST">
+        <input type="text" placeholder="Username" id="username"><br><br>
+        <input type="password" placeholder="Password" id="password"><br><br>
         <button type="submit">Login</button>
     </form>
+    <script type="text/javascript" src="/scripts/Login.js"></script>
+    
 </body>
 </html>

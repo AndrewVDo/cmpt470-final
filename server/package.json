@@ -9,7 +9,9 @@
   "author": "andrew do",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.0.2",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "node": "^13.12.0",
     "nodemon": "^2.0.3"
   }

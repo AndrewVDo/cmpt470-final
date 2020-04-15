@@ -31,7 +31,7 @@ app.use(session({
 app.use('upload-csv', router)
 
 app.get('/', (req, res) => {
-    if(req.session.username) {
+    if(!req.session.username) {
         res.render('./Login.ejs')
         return
     }
@@ -66,7 +66,7 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/landing-page', (req, res) => {
-    if(req.session.username) {
+    if(!req.session.username) {
         res.render('./Login.ejs')
         return
     }
@@ -138,14 +138,14 @@ app.post('/upload-file', upload.single('file'), async (req, res) => {
 })
 
 app.get('/histogram', (req, res) => {
-    // if(!req.session.username) {
-    //     res.render('./Login.ejs')
-    //     return
-    // }
+    if(!req.session.username) {
+        res.render('./Login.ejs')
+        return
+    }
 
-    // if(!req.session.grades) {
-    //     res.render('./LandingPage.ejs')
-    // }
+    if(!req.session.grades) {
+        res.render('./LandingPage.ejs')
+    }
 
     res.render('./Histogram.ejs')
 })
@@ -155,14 +155,23 @@ app.get('/fetch-grades', (req, res) => {
         success: false,
         msg: 'message in a bottle',
     }
-    // if(!req.session.user || !req.session.grades) {
-    //     result.msg = 'This requires a proper session, redirecting...'
-    //     res.json(result)
-    //     return
-    // }
+    console.log(req.session.username, req.session.grades)
+    if(!req.session.username || !req.session.grades) {
+        result.msg = 'This requires a proper session, redirecting...'
+        res.json(result)
+        return
+    }
     result.grades = req.session.grades
     result.success = true
     res.json(result)
+})
+
+app.post('/signout', (req, res) => {
+    req.session.username = undefined
+    req.session.grades = undefined
+    res.json({
+        success: true
+    })
 })
 
 app.listen(8080, () => console.log("Listening on 8080"))

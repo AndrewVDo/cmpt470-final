@@ -141,12 +141,34 @@ const updateHist = () => {
 }
 
 document.getElementById("print").addEventListener('click', () => {
-    console.log("print")
-    var csv = 'Name,Title\n';
-    var hiddenElement = document.createElement('a');
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'people.csv';
+    let csvContent = "data:text/csv;charset=utf-8,";
+
+    let x = 0
+    while(grades[x].studentID !== 'total') x++
+    for(y in grades[x]){
+        csvContent += y + ','
+    }
+    csvContent += 'Final Percentage, Letter Grade\r\n'
+    
+    grades.forEach((row) => {
+        if(row.studentID !== 'total'){
+            for(let x in row){
+                csvContent += row[x] + ','
+            }
+            csvContent += '\r\n'
+        }
+    })
+
+    for (x in totals){
+        csvContent += totals[x] + ',' 
+    }
+    csvContent += '\r\n'
+
+    console.log(csvContent)
+
+    var encodedUri = encodeURI(csvContent);
+    window.open(encodedUri);
+
 })
 
 

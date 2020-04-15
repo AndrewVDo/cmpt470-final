@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Grades Histogram</title>
+    <link rel="stylesheet" type="text/css" href="/css/Common.css">
+    <link rel="stylesheet" type="text/css" href="/css/Histogram.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body onload>
+
+    <table id=slider-table>
+        <thead>
+            <tr>
+                <td colspan ="8" id='histogram'>
+                    <div>
+                        <table id='histogram-table'>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="dist-bar">
+                                            <div class="dist-fill">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="dist-grade">A+</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">A</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">A-</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">B+</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">B</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">B-</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">C+</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">C</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">C-</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">D</p>
+                                    </td>
+                                    <td>
+                                        <p class="dist-grade">F</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <p>Grade</p>
+                </th>
+                <th colspan="6">
+                    <p>Grade cutoff</p>
+                </th>
+                <th>
+                    <p>Percent</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            <tr>
+                <td>
+                    <p>A+</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>A</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>A-</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>B+</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>B</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>B-</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>C+</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>C</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>C-</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p>D</p>
+                </td>
+                <td colspan="6">
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider">
+                    </div>
+                </td>
+                <td>
+                    <p class="disp-cutoff"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="8">
+                    <button class="print" id="print">
+                        Print
+                    </button>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    
+    
+
+    <script type="text/javascript" src="/scripts/Histogram.js"></script>
+    
+</body>
+</html>

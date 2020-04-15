@@ -147,7 +147,22 @@ app.get('/histogram', (req, res) => {
     //     res.render('./LandingPage.ejs')
     // }
 
-    res.render('./Histogram.ejs', {grades : req.session.grades})
+    res.render('./Histogram.ejs')
+})
+
+app.get('/fetch-grades', (req, res) => {
+    let result = {
+        success: false,
+        msg: 'message in a bottle',
+    }
+    // if(!req.session.user || !req.session.grades) {
+    //     result.msg = 'This requires a proper session, redirecting...'
+    //     res.json(result)
+    //     return
+    // }
+    result.grades = req.session.grades
+    result.success = true
+    res.json(result)
 })
 
 app.listen(8080, () => console.log("Listening on 8080"))

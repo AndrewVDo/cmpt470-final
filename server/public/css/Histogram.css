@@ -1,0 +1,82 @@
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #4CAF50;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
+  #slider-table {
+    position: absolute;
+    left: 50%;
+    margin-left: -30em;
+    width: 60em;
+    padding: 1em;
+    border: 1px solid black;
+    background-color: whitesmoke;
+  }
+
+  #slider-table > thead > tr > th, #slider-table > tbody > tr > td {
+      width: 7.5em;
+      text-align: center;
+  }
+
+  #histogram {
+      height: 15em;
+  }
+
+  .dist-bar {
+    height: 12em;
+    text-align: center;
+    width: 4.9em;
+    margin-bottom: 0px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+
+  .dist-grade {
+    margin-top: 0px;
+    height: 3em;
+    text-align: center;
+    width: 4.9em;
+  }
+
+  .dist-fill {
+      background-color: blue;
+      height: 0em;
+      width: 4.9em;
+      position: absolute;
+      top: 13.25em;
+  }
+
+  .print {
+    width: 15em;
+    position: relative;
+    top: 25%;
+    border: 1px solid black;
+    border-radius: 5em;
+    padding: 1em;
+    background-color: lime;
+}
